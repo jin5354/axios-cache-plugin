@@ -1,0 +1,37 @@
+{
+  "name": "axios-cache-plugin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "test": "nyc ava --verbose",
+    "build": "NODE_ENV=production webpack --progress --config build/webpack.build.config.js"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "author": "jin5354<xiaoyanjinx@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "coveralls": "^2.13.1",
+    "eslint": "^4.0.0",
+    "eslint-config-wdfe": "^0.3.2",
+    "eslint-loader": "^1.8.0",
+    "nyc": "^11.0.2",
+    "webpack": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1"
+  }
+}
