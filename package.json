@@ -15,7 +15,7 @@
   },
   "author": "jin5354<xiaoyanjinx@gmail.com>",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.0",
@@ -28,9 +28,7 @@
     "eslint-config-wdfe": "^0.3.2",
     "eslint-loader": "^1.8.0",
     "nyc": "^11.0.2",
-    "webpack": "^3.0.0"
-  },
-  "devDependencies": {
+    "webpack": "^3.0.0",
     "ava": "^0.19.1"
   }
 }
