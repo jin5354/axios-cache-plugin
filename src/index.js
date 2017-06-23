@@ -2,7 +2,7 @@
  * @Filename: index.js
  * @Author: jin5354
  * @Email: xiaoyanjinx@gmail.com
- * @Last Modified time: 2017-06-23 16:16:09
+ * @Last Modified time: 2017-06-23 16:50:54
  */
 import {Cacher} from './cacher.js'
 
@@ -30,10 +30,8 @@ export default function wrapper(instance, option) {
   function requestWithCacheCheck(option, func, ...arg) {
     if(cacher.needCache(option)) {
       if(cacher.hasCache(option)) {
-        console.log('命中！')
         return Promise.resolve(cacher.getCache(option))
       }else {
-        console.log('未命中，进缓存。')
         return func(...arg).then(response => {
           cacher.setCache(option, response)
           return response
