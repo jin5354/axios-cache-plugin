@@ -2,10 +2,16 @@
  * @Filename: index.js
  * @Author: jin5354
  * @Email: xiaoyanjinx@gmail.com
- * @Last Modified time: 2017-06-23 16:50:54
+ * @Last Modified time: 2017-06-23 17:40:49
  */
 import {Cacher} from './cacher.js'
 
+/**
+ * [wrapper 包装器]
+ * @param  {[axios instance]} instance
+ * @param  {[obj]} option
+ * @return {[axios instance with cache feature]}
+ */
 export default function wrapper(instance, option) {
 
   const cacher = new Cacher(option)
@@ -19,6 +25,11 @@ export default function wrapper(instance, option) {
     'patch'
   ]
 
+  /**
+   * [axiosWithCache axios instance Proxy]
+   * @param  {...[any]} arg
+   * @return {[promise]}
+   */
   function axiosWithCache(...arg) {
     if(arg.length === 1 && (arg[0].method === 'get' || arg[0].method === undefined)) {
       return requestWithCacheCheck(arg[0], instance, ...arg)
@@ -27,6 +38,13 @@ export default function wrapper(instance, option) {
     }
   }
 
+  /**
+   * [requestWithCacheCheck 对于 get 请求检查缓存，返回结果 promise]
+   * @param  {[obj]}    option
+   * @param  {[request handler func]}    func
+   * @param  {...[any]} arg
+   * @return {[promise]}
+   */
   function requestWithCacheCheck(option, func, ...arg) {
     if(cacher.needCache(option)) {
       if(cacher.hasCache(option)) {
@@ -42,6 +60,11 @@ export default function wrapper(instance, option) {
     }
   }
 
+  /**
+   * [get axios instance get function proxy]
+   * @param  {...[any]} arg
+   * @return {[promise]}
+   */
   axiosWithCache.get = function(...arg) {
     if(arg.length === 1) {
       return requestWithCacheCheck({
@@ -57,14 +80,25 @@ export default function wrapper(instance, option) {
     }
   }
 
+  /**
+   * [__addFilter cacher instance addFilter function proxy]
+   * @param  {[reg]} filter
+   */
   axiosWithCache.__addFilter = function(filter) {
     cacher.addFilter(filter)
   }
 
+  /**
+   * [__removeFilter cacher instance removeFilter function proxy]
+   * @param  {[reg]} filter
+   */
   axiosWithCache.__removeFilter = function(filter) {
     cacher.removeFilter(filter)
   }
 
+  /**
+   * [proxy axios instance functions which are no need to be cached]
+   */
   unCacheMethods.forEach(method => {
     axiosWithCache[method] = function(...arg) {
       return instance[method](...arg)
