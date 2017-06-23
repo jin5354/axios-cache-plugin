@@ -1,9 +1,8 @@
 {
   "name": "axios-cache-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "scripts": {
     "test": "nyc ava --verbose",
     "build": "NODE_ENV=production webpack --progress --config build/webpack.build.config.js"
