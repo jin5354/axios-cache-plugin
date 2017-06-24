@@ -2,7 +2,7 @@
  * @Filename: index.js
  * @Author: jin5354
  * @Email: xiaoyanjinx@gmail.com
- * @Last Modified time: 2017-06-23 17:40:49
+ * @Last Modified time: 2017-06-24 21:07:34
  */
 import {Cacher} from './cacher.js'
 
@@ -48,7 +48,10 @@ export default function wrapper(instance, option) {
   function requestWithCacheCheck(option, func, ...arg) {
     if(cacher.needCache(option)) {
       if(cacher.hasCache(option)) {
-        return Promise.resolve(cacher.getCache(option))
+        return Promise.resolve({
+          __fromAxiosCache: true,
+          ...cacher.getCache(option)
+        })
       }else {
         return func(...arg).then(response => {
           cacher.setCache(option, response)
@@ -95,6 +98,11 @@ export default function wrapper(instance, option) {
   axiosWithCache.__removeFilter = function(filter) {
     cacher.removeFilter(filter)
   }
+
+  /**
+   * [cacher instance proxy]
+   */
+  axiosWithCache.__cacher = cacher
 
   /**
    * [proxy axios instance functions which are no need to be cached]

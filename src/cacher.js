@@ -2,7 +2,7 @@
  * @Filename: cacher.js
  * @Author: jin5354
  * @Email: xiaoyanjinx@gmail.com
- * @Last Modified time: 2017-06-23 18:05:13
+ * @Last Modified time: 2017-06-24 21:14:25
  */
 
 export class Cacher {
@@ -10,8 +10,8 @@ export class Cacher {
   constructor(option) {
     this.cacheMap = new Map()
     this.option = option || {}
-    this.maxCacheSize = option.maxCacheSize || 15
-    this.ttl = option.ttl
+    this.maxCacheSize = this.option.maxCacheSize || 15
+    this.ttl = this.option.ttl
     this.filters = []
   }
 
@@ -46,7 +46,9 @@ export class Cacher {
     }
     if(this.ttl) {
       setTimeout(() => {
-        this.cacheMap.delete(key)
+        if(this.hasCache(key)) {
+          this.cacheMap.delete(JSON.stringify(key))
+        }
       }, this.ttl)
     }
   }
@@ -60,6 +62,15 @@ export class Cacher {
     return this.filters.some(reg => {
       return reg.test(option.url)
     })
+  }
+
+  /**
+   * [hasCache 是否已有缓存]
+   * @param  {[any]}  key
+   * @return {Boolean}
+   */
+  hasCache(key) {
+    return this.cacheMap.has(JSON.stringify(key))
   }
 
   /**
