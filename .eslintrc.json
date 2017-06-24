@@ -1,7 +1,4 @@
 {
     "extends": "wdfe",
-    "plugins": [
-        "vue"
-    ],
     "parser": "babel-eslint"
 }

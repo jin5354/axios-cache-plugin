@@ -1,6 +1,6 @@
 {
   "name": "axios-cache-plugin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Help you cache GET request when using axios.",
   "main": "dist/index.js",
   "repository": {
@@ -23,6 +23,8 @@
   "author": "jin5354<xiaoyanjinx@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.19.1",
+    "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.0",
@@ -35,7 +37,7 @@
     "eslint-config-wdfe": "^0.3.2",
     "eslint-loader": "^1.8.0",
     "nyc": "^11.0.2",
-    "webpack": "^3.0.0",
-    "ava": "^0.19.1"
+    "regenerator-runtime": "^0.10.5",
+    "webpack": "^3.0.0"
   }
 }
