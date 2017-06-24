@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/jin5354/axios-cache-plugin.svg?branch=master)](https://travis-ci.org/jin5354/axios-cache-plugin)
 [![Coverage Status](https://coveralls.io/repos/github/jin5354/axios-cache-plugin/badge.svg?branch=master)](https://coveralls.io/github/jin5354/axios-cache-plugin?branch=master)
 [![npm package](https://img.shields.io/npm/v/axios-cache-plugin.svg)](https://www.npmjs.org/package/axios-cache-plugin)
+[![npm downloads](https://img.shields.io/npm/dt/axios-cache-plugin.svg)](https://www.npmjs.org/package/axios-cache-plugin)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Help you cache GET request when using axios.
