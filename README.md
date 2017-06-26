@@ -15,7 +15,7 @@ npm install axios-cache-plugin --save-dev
 ```
 or
 ```bash
-yarn add axios-cache-plugin
+yarn add axios-cache-plugin --dev
 ```
 
 ## Usage
@@ -86,7 +86,7 @@ http({
 
 Options are optional.
 
-```
+```javascript
 let http = wrapper(axios, {
   maxCacheSize: 15,  // cached items amounts. if the number of cached items exceeds, the earliest cached item will be deleted. default number is 15.
   ttl: 60000 // time to live. if you set this option the cached item will be auto deleted after ttl(ms).
