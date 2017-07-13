@@ -13,6 +13,7 @@ export class Cacher {
     this.maxCacheSize = this.option.maxCacheSize || 15
     this.ttl = this.option.ttl
     this.filters = []
+    this.excludeHeaders = this.option.excludeHeaders || false
   }
 
   /**
@@ -40,6 +41,8 @@ export class Cacher {
    * @param {[any]} value
    */
   setCache(key, value) {
+    if(this.excludeHeaders) delete key.headers
+
     this.cacheMap.set(JSON.stringify(key), value)
     if(this.maxCacheSize && this.cacheMap.size > this.maxCacheSize) {
       this.cacheMap.delete([...(this.cacheMap).keys()][0])

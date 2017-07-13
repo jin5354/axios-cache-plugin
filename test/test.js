@@ -234,3 +234,54 @@ test('ttl with maxCacheSize test', async t => {
   }))
 
 })
+
+test('with options ignore header', async t => {
+
+  let http = wrapper(axios, {
+    excludeHeaders: true
+  })
+  let reg = /users/
+  http.__addFilter(reg)
+
+  await http({
+    url: 'http://www.404forest.com:3000/users/jin5354',
+    method: 'get',
+    headers: {
+      'unique-prop': Math.random().toString()
+    }
+  })
+  t.is(http.__cacher.cacheMap.size, 1)
+  await http({
+    url: 'http://www.404forest.com:3000/users/jin5354',
+    method: 'get',
+    headers: {
+      'unique-prop': Math.random().toString()
+    }
+  })
+  t.is(http.__cacher.cacheMap.size, 1)
+})
+
+test('with out options ignore header', async t => {
+
+  let http = wrapper(axios, {})
+
+  let reg = /users/
+  http.__addFilter(reg)
+
+  await http({
+    url: 'http://www.404forest.com:3000/users/jin5354',
+    method: 'get',
+    headers: {
+      'unique-prop': Math.random().toString()
+    }
+  })
+  t.is(http.__cacher.cacheMap.size, 1)
+  await http({
+    url: 'http://www.404forest.com:3000/users/jin5354',
+    method: 'get',
+    headers: {
+      'unique-prop': Math.random().toString()
+    }
+  })
+  t.is(http.__cacher.cacheMap.size, 2)
+})
