@@ -42,7 +42,7 @@ let http = axios.create({
   withCredentials: false
 })
 
-let httpProxy = wrapper(axios, {
+let httpProxy = wrapper(http, {
   maxCacheSize: 15
 })
 export default httpProxy
