@@ -11,11 +11,11 @@ Help you cache GET request when using axios.
 ## Install
 
 ```bash
-npm install axios-cache-plugin --save-dev
+npm install axios-cache-plugin --save
 ```
 or
 ```bash
-yarn add axios-cache-plugin --dev
+yarn add axios-cache-plugin
 ```
 
 ## Usage
