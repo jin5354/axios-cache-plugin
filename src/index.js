@@ -54,7 +54,17 @@ export default function wrapper(instance, option) {
         })
       }else {
         return func(...arg).then(response => {
-          cacher.setCache(option, response)
+          /*
+            Can read the HTTP headers and status codes here
+            to determine whether or not it should be cached, purged, etc.
+          */
+          const statusCode = response.status
+          const cacheControl = response.headers['cache-control'] || null
+          const lastModified = response.headers['last-modified'] || null
+          const etag = response.headers['etag'] || null
+          if (response.status < 400) {  // should just check for 304
+            cacher.setCache(option, response)
+          }
           return response
         })
       }
