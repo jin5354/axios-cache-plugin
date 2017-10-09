@@ -285,3 +285,31 @@ test('with out options ignore header', async t => {
   })
   t.is(http.__cacher.cacheMap.size, 2)
 })
+
+test('clear cache', async t => {
+
+  let http = wrapper(axios)
+  let reg = /users/
+  http.__addFilter(reg)
+
+  t.is(http.__cacher.cacheMap.size, 0)
+  http.__clearCache()
+  t.is(http.__cacher.cacheMap.size, 0)
+
+  await http({
+    url: 'http://www.404forest.com:3000/users/jin5354',
+    method: 'get'
+  })
+
+  t.is(http.__cacher.cacheMap.size, 1)
+
+  await http({
+    url: 'http://www.404forest.com:3000/users/yyhappynice',
+    method: 'get'
+  })
+
+  t.is(http.__cacher.cacheMap.size, 2)
+
+  http.__clearCache()
+  t.is(http.__cacher.cacheMap.size, 0)
+})

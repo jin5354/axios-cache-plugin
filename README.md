@@ -82,6 +82,12 @@ http({
 
 ### instance.__removeFilter(reg)
 
+Remove filter.
+
+### instance.__clearCache()
+
+Clear cache.
+
 ## wrapper options
 
 Options are optional.

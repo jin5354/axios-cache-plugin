@@ -105,6 +105,13 @@ export default function wrapper(instance, option) {
   axiosWithCache.__cacher = cacher
 
   /**
+   * [__clearCache cacher instance clear function proxy]
+   */
+  axiosWithCache.__clearCache = function(){
+    cacher.clear()
+  }
+
+  /**
    * [proxy axios instance functions which are no need to be cached]
    */
   unCacheMethods.forEach(method => {

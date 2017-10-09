@@ -1,6 +1,6 @@
 {
   "name": "axios-cache-plugin",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Help you cache GET request when using axios.",
   "main": "dist/index.js",
   "repository": {

@@ -85,4 +85,11 @@ export class Cacher {
     return this.cacheMap.get(JSON.stringify(key))
   }
 
+  /**
+   * [clear 清空缓存]
+   */
+  clear() {
+    this.cacheMap.clear()
+  }
+
 }
