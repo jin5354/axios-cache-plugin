@@ -41,6 +41,7 @@ export class Cacher {
    * @param {[any]} value
    */
   setCache(key, value) {
+    delete key.cancelToken
     if(this.excludeHeaders) delete key.headers
 
     this.cacheMap.set(JSON.stringify(key), value)
@@ -73,6 +74,7 @@ export class Cacher {
    * @return {Boolean}
    */
   hasCache(key) {
+    delete key.cancelToken
     return this.cacheMap.has(JSON.stringify(key))
   }
 
@@ -82,6 +84,7 @@ export class Cacher {
    * @return {[any]}
    */
   getCache(key) {
+    delete key.cancelToken
     return this.cacheMap.get(JSON.stringify(key))
   }
 
