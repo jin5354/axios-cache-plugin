@@ -1,7 +1,7 @@
 node_modules
-dist
 coverage
 .nyc_output
 build/webpack.dev.config.js
 example
 .history
+package-lock.json
